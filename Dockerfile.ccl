@@ -31,21 +31,21 @@ FROM ubuntu:14.04 as builder
       && cd /opt/src/pgloader \
       && make CL=ccl DYNSIZE=256 clones save
 
-FROM ubuntu:14.04
-        # libssl1.1 \
+# FROM ubuntu:14.04
+#         # libssl1.1 \
 
-  RUN apt-get update \
-      && apt-get install -y --no-install-recommends \
-        curl \
-        freetds-dev \
-        gawk \
-        libsqlite3-dev \
-        libzip-dev \
-        make \
-        sbcl \
-        unzip \
-      && rm -rf /var/lib/apt/lists/*
+#   RUN apt-get update \
+#       && apt-get install -y --no-install-recommends \
+#         curl \
+#         freetds-dev \
+#         gawk \
+#         libsqlite3-dev \
+#         libzip-dev \
+#         make \
+#         sbcl \
+#         unzip \
+#       && rm -rf /var/lib/apt/lists/*
 
-  COPY --from=builder /opt/src/pgloader/build/bin/pgloader /usr/local/bin
+#   COPY --from=builder /opt/src/pgloader/build/bin/pgloader /usr/local/bin
 
-  LABEL maintainer="Dimitri Fontaine <dim@tapoueh.org>"
+#   LABEL maintainer="Dimitri Fontaine <dim@tapoueh.org>"
